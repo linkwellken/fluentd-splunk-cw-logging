@@ -2,15 +2,15 @@
 https://docs.docker.com/config/containers/logging/fluentd/
 
 ## install td-agent
-curl -L https://toolbelt.treasuredata.com/sh/install-amazon2-td-agent4.sh | sh
+```curl -L https://toolbelt.treasuredata.com/sh/install-amazon2-td-agent4.sh | sh```
 
 ## splunk output plugin install
 https://github.com/splunk/fluent-plugin-splunk-hec
-td-agent-gem install fluent-plugin-splunk-hec
+```td-agent-gem install fluent-plugin-splunk-hec```
 
 ## aws output plugin install
 https://github.com/fluent-plugins-nursery/fluent-plugin-cloudwatch-logs
-td-agent-gem install fluent-plugin-cloudwatch-logs
+```td-agent-gem install fluent-plugin-cloudwatch-logs```
 
 ## /etc/td-agent/td-agent.conf
 <source>
