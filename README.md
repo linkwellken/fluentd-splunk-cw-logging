@@ -2,17 +2,24 @@
 https://docs.docker.com/config/containers/logging/fluentd/
 
 ## install td-agent
-```curl -L https://toolbelt.treasuredata.com/sh/install-amazon2-td-agent4.sh | sh```
+```
+curl -L https://toolbelt.treasuredata.com/sh/install-amazon2-td-agent4.sh | sh
+```
 
 ## splunk output plugin install
 https://github.com/splunk/fluent-plugin-splunk-hec
-```td-agent-gem install fluent-plugin-splunk-hec```
+```
+td-agent-gem install fluent-plugin-splunk-hec
+```
 
 ## aws output plugin install
 https://github.com/fluent-plugins-nursery/fluent-plugin-cloudwatch-logs
-```td-agent-gem install fluent-plugin-cloudwatch-logs```
+```
+td-agent-gem install fluent-plugin-cloudwatch-logs
+```
 
 ## /etc/td-agent/td-agent.conf
+```
 <source>
   @type forward
   port 24224
@@ -64,30 +71,25 @@ https://github.com/fluent-plugins-nursery/fluent-plugin-cloudwatch-logs
     format json
   </store>
 </match>
-
-
-
-
-
-
-
-
-
+```
 
 ## run
 systemctl start td-agent
 
+### docker log driver flags
+```
+docker run -d \
+    --log-driver=fluentd \
+    --log-opt fluentd-address=localhost:24224 \
+```
 
-
-
-
-##fluentbit
+## fluentbit
 https://fluentbit.io/
 
 ### Amazon-Linux Install
 curl https://raw.githubusercontent.com/fluent/fluent-bit/master/install.sh | sh
 
-###aws
+### aws
 https://github.com/aws/aws-for-fluent-bit/tree/master/examples/fluent-bit/systems-manager-ec2
 
 ### splunk
