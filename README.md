@@ -77,8 +77,10 @@ td-agent-gem install fluent-plugin-cloudwatch-logs
 ```
 
 ## run
+```
 systemctl restart td-agent
 systemctl start td-agent
+```
 
 ### docker log driver flags for container monitoring
 https://docs.docker.com/config/containers/logging/fluentd/
@@ -88,14 +90,4 @@ docker run -d \
     --log-opt fluentd-address=localhost:24224 \
 ```
 
-## fluentbit
-https://fluentbit.io/
 
-### Amazon-Linux Install
-curl https://raw.githubusercontent.com/fluent/fluent-bit/master/install.sh | sh
-
-### aws
-https://github.com/aws/aws-for-fluent-bit/tree/master/examples/fluent-bit/systems-manager-ec2
-
-### splunk
-https://docs.fluentbit.io/manual/pipeline/outputs/splunk
