@@ -1,27 +1,29 @@
 # fluentd-splunk-cw-logging
+
+## Method 1 - Run fluentd as td-agent service
 1. Install td-agent and output plugins
 2. Modify the td-agent file with the config below
 3. Start your docker container with the fluentd logging driver
 4. Confirm log delivery to Splunk and CWL.
 
-## install td-agent
+### install td-agent
 ```
 curl -L https://toolbelt.treasuredata.com/sh/install-amazon2-td-agent4.sh | sh
 ```
 
-## splunk output plugin install
+### splunk output plugin install
 https://github.com/splunk/fluent-plugin-splunk-hec
 ```
 td-agent-gem install fluent-plugin-splunk-hec
 ```
 
-## aws output plugin install
+### aws output plugin install
 https://github.com/fluent-plugins-nursery/fluent-plugin-cloudwatch-logs
 ```
 td-agent-gem install fluent-plugin-cloudwatch-logs
 ```
 
-## /etc/td-agent/td-agent.conf
+### /etc/td-agent/td-agent.conf
 ```
 # docker logging-driver in
 <source>
@@ -78,7 +80,7 @@ td-agent-gem install fluent-plugin-cloudwatch-logs
 </match>
 ```
 
-## run
+##3 run
 ```
 systemctl restart td-agent
 systemctl start td-agent
@@ -92,7 +94,7 @@ docker run -d \
     --log-opt fluentd-address=localhost:24224 \
 ```
 
-## Docker Deployment
+## Method 2 - Docker Deployment
 
 ### fluentd docker image github repo
 https://github.com/fluent/fluentd-docker-image/blob/master/v1.15/debian/entrypoint.sh
@@ -106,8 +108,7 @@ https://hub.docker.com/r/fluent/fluentd/
 3. Copy over the three files below - entrypoint.sh, Dockerfile, and fluent.conf 
 ```
 
-###
-entrypoint.sh
+### entrypoint.sh
 ```
 #!/bin/sh
 
