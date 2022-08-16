@@ -80,7 +80,7 @@ td-agent-gem install fluent-plugin-cloudwatch-logs
 </match>
 ```
 
-##3 run
+### start agent
 ```
 systemctl restart td-agent
 systemctl start td-agent
@@ -96,16 +96,17 @@ docker run -d \
 
 ## Method 2 - Docker Deployment
 
-### fluentd docker image github repo
-https://github.com/fluent/fluentd-docker-image/blob/master/v1.15/debian/entrypoint.sh
+### Resources
+* [fluentd docker image github repo](https://github.com/fluent/fluentd-docker-image/blob/master/v1.15/debian/entrypoint.sh)
+* [docker hub / container build steps](https://hub.docker.com/r/fluent/fluentd/)
 
-### docker hub / container build steps
-https://hub.docker.com/r/fluent/fluentd/
-
+### steps
 ```
 1. mkdir /lw/fluentd
 2. cd /lw/fluentd
 3. Copy over the three files below - entrypoint.sh, Dockerfile, and fluent.conf 
+4. Run docker build
+5. Start the container
 ```
 
 ### entrypoint.sh
