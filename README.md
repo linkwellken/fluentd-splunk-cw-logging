@@ -99,7 +99,8 @@ https://hub.docker.com/r/fluent/fluentd/
 
 ```
 1. mkdir /lw/fluentd
-2. Copy over the three files below - entrypoint.sh, Dockerfile, and fluent.conf to /lw/fluentd
+2. cd /lw/fluentd
+3. Copy over the three files below - entrypoint.sh, Dockerfile, and fluent.conf 
 ```
 
 ###
