@@ -23,6 +23,7 @@ td-agent-gem install fluent-plugin-cloudwatch-logs
 
 ## /etc/td-agent/td-agent.conf
 ```
+# docker logging-driver in
 <source>
   @type forward
   port 24224
@@ -70,8 +71,9 @@ td-agent-gem install fluent-plugin-cloudwatch-logs
     log_stream_name CL_TEST1
     auto_create_stream true
     region us-west-2
-    json_handler json
-    format json
+    <buffer>
+      flush_interval 1s
+    </buffer>
   </store>
 </match>
 ```
@@ -89,6 +91,7 @@ docker run -d \
     --log-driver=fluentd \
     --log-opt fluentd-address=localhost:24224 \
 ```
+
 ## Docker Deployment
 
 ### fluentd docker image github repo
