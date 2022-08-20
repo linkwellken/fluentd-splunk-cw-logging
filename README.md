@@ -105,9 +105,11 @@ docker run -d \
 ```
 1. mkdir /lw/fluentd
 2. cd /lw/fluentd
-3. Copy over the three files below - entrypoint.sh, Dockerfile, and fluent.conf 
-4. Run docker build
-5. Start the container
+3. sudo yum install git
+4. git clone https://github.com/linkwellken/fluentd-splunk-cw-logging.git
+5. sudo chmod +x entrypoint.sh
+5. docker build -t custom-fluentd:latest ./
+6. docker run -d -p 24224:24224 --restart unless-stopped --name fluentd  custom-fluentd:latest
 ```
 
 ### entrypoint.sh
@@ -168,7 +170,7 @@ RUN buildDeps="sudo make gcc g++ libc-dev" \
 
 
 COPY fluent.conf /fluentd/etc/
-COPY entrypoint.sh /bin/
+COPY entrypoint.sh /bin
 
 USER fluent
 ```
@@ -228,12 +230,3 @@ USER fluent
 </match>
 ```
 
-### docker build image command:
-```
-docker build -t custom-fluentd:latest ./
-```
-
-### docker run command:
-```
-docker run -d -p 24224:24224 --restart unless-stopped --name fluentd  custom-fluentd:latest
-```
