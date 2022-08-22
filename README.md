@@ -49,9 +49,9 @@ td-agent-gem install fluent-plugin-cloudwatch-logs
   @type copy
   <store>
     @type splunk_hec
-    hec_host 192.168.136.29
+    hec_host <splunk-ip>
     hec_port 8088
-    hec_token 444b0d93-8e37-42b8-8fe7-64723e0331c1
+    hec_token <splunk_hec_token>
     insecure_ssl true
     index chainlink
     source ERT
@@ -198,9 +198,9 @@ USER fluent
   @type copy
   <store>
     @type splunk_hec
-    hec_host 192.168.136.29
+    hec_host <splunk-ip>
     hec_port 8088
-    hec_token 444b0d93-8e37-42b8-8fe7-64723e0331c1
+    hec_token <splunk-hec-token>
     insecure_ssl true
     index chainlink
     source ERT
