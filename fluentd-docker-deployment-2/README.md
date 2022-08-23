@@ -1,0 +1,23 @@
+## Method 3 - Docker deployment with fluent.conf passed in the docker run command
+```
+1. mkdir /opt/fluentd
+2. cd /opt/fluentd
+3. sudo yum install git
+4. git clone https://github.com/linkwellken/fluentd-splunk-cw-logging.git
+5. cd fluentd-docker-deployment-2
+6. sudo chmod +x entrypoint.sh
+7. docker build -t custom-fluentd:latest ./
+```
+
+### Docker run command
+```
+docker run -d -p 24224:24224 -u root -v /opt/fluentd/fluentd-docker-deployment-2/fluent.conf:/fluentd/etc/fluent.conf -e FLUENTD_CONF=fluent.conf --restart unless-stopped --name fluentd  custom-fluentd:latest
+```
+
+### docker log driver flags for sending logs to fluentd container
+https://docs.docker.com/config/containers/logging/fluentd/
+```
+docker run -d \
+    --log-driver=fluentd \
+    --log-opt fluentd-address=localhost:24224 \
+```
