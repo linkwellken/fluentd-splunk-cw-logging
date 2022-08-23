@@ -27,6 +27,13 @@ td-agent-gem install fluent-plugin-cloudwatch-logs
 cd /opt
 git clone https://github.com/linkwellken/fluentd-splunk-cw-logging.git
 cd fluentd-splunk-cw-logging/td-agent
+```
+
+### Modify td-agent.conf for environment
+```
+vi /etc/td-agent/td-agent.conf
+1. For splunk_out, update splunk-ip, splunk hec, index, source, sourcetype
+2. For cloudwatch_out, update log_group_name, log_stream_name, and region
 cp td-agent.conf /etc/td-agent
 ```
 
