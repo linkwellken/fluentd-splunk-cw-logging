@@ -1,17 +1,28 @@
 ## Method 3 - Docker deployment with fluent.conf passed in the docker run command
 ```
-1. mkdir /opt/fluentd
-2. cd /opt/fluentd
-3. sudo yum install git
-4. git clone https://github.com/linkwellken/fluentd-splunk-cw-logging.git
-5. cd fluentd-splunk-cw-logging/fluentd-docker-deployment-2
-6. sudo chmod +x entrypoint.sh
-7. docker build -t custom-fluentd:latest ./
+mkdir /opt/fluentd
+cd /opt/fluentd
+sudo yum install git
+git clone https://github.com/linkwellken/fluentd-splunk-cw-logging.git
+cd fluentd-splunk-cw-logging/fluentd-docker-deployment-2
+sudo chmod +x entrypoint.sh
+```
+
+### Modify fluent.conf for environment
+```
+vi fluent.conf
+1. For splunk_out, update splunk-ip, splunk-hec, and index, source, sourcetype if needed
+2. For cloudwatch_out, update log_group_name, log_stream_name, and region
+```
+
+### Build the container
+```
+docker build -t custom-fluentd:latest ./
 ```
 
 ### Docker run command
 ```
-docker run -d -p 24224:24224 -v /opt/fluentd/fluentd-docker-deployment-2/fluent.conf:/fluentd/etc/fluent.conf -e FLUENTD_CONF=fluent.conf --restart unless-stopped --name fluentd  custom-fluentd:latest
+docker run -d -p 24224:24224 -v /opt/fluentd/fluentd-splunk-cw-logging/fluentd-docker-deployment-2/fluent.conf:/fluentd/etc/fluent.conf -e FLUENTD_CONF=fluent.conf --restart unless-stopped --name fluentd  custom-fluentd:latest
 ```
 
 ### docker log driver flags for sending logs to fluentd container
