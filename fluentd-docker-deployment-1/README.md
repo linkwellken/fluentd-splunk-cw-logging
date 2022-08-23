@@ -9,7 +9,7 @@
 
 ```
 
-### Modify td-agent.conf for environment
+### Modify fluent.conf for environment
 ```
 vi fluent.conf
 1. For splunk_out, update splunk-ip, splunk-hec, and index, source, sourcetype if needed
