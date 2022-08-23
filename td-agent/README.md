@@ -1,10 +1,8 @@
-# fluentd-splunk-cw-logging
-
-## Method 1 - Run fluentd as td-agent service
+## Method 1 - Run fluentd as the td-agent service
 1. Install td-agent and output plugins
-2. Modify the td-agent file with the config below
-3. Update the variables for Splunk and CWL.
-4. Start your docker container with the fluentd logging driver
+2. Clone the repo
+3. Update the variables for Splunk and CWL as needed.
+4. Start the docker container with the fluentd logging driver
 5. Confirm log delivery to Splunk and CWL.
 
 ### install td-agent
@@ -26,14 +24,15 @@ td-agent-gem install fluent-plugin-cloudwatch-logs
 
 ### Create /etc/td-agent/td-agent.conf
 ```
+cd /opt
 git clone https://github.com/linkwellken/fluentd-splunk-cw-logging.git
-cd td-agent
+cd fluentd-splunk-cw-logging/td-agent
 cp td-agent.conf /etc/td-agent
 ```
 
 ### start agent
 ```
-systemctl restart td-agent
+systemctl enable td-agent
 systemctl start td-agent
 ```
 
