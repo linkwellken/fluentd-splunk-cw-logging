@@ -1,19 +1,15 @@
 Docker Deployment
+This repo provides three different methods for implementing fluentd logging for your containers - installing fluentd as a service via the td-agent, and installing fluentd as a docker container.  The fluentd conf file is configured to forward the container logs to both Splunk and Cloudwatch Logs Group.
+
+### Methods
+Method 1 - Deploying fluentd as a service via the td-agent
+Method 2 - Deploying a custom fluentd docker container with the fluent.conf file baked into the image
+Method 3 - Deploying a custom fluentd docker container and passing fluent.conf in the docker run command
 
 ### Resources
 * [fluentd docker image github repo](https://github.com/fluent/fluentd-docker-image/blob/master/v1.15/debian/entrypoint.sh)
 * [docker hub / container build steps](https://hub.docker.com/r/fluent/fluentd/)
-
-### steps
-```
-1. mkdir /lw/fluentd
-2. cd /lw/fluentd
-3. sudo yum install git
-4. git clone https://github.com/linkwellken/fluentd-splunk-cw-logging.git
-5. sudo chmod +x entrypoint.sh
-5. docker build -t custom-fluentd:latest ./
-6. docker run -d -p 24224:24224 --restart unless-stopped --name fluentd  custom-fluentd:latest
-```
+* [fluentd logging driver for docker](https://docs.docker.com/config/containers/logging/fluentd/)
 
 ### entrypoint.sh
 ```
