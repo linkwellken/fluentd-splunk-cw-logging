@@ -6,7 +6,19 @@
 4. git clone https://github.com/linkwellken/fluentd-splunk-cw-logging.git
 5. cd fluentd-splunk-cw-logging/fluentd-docker-deployment-1
 6. sudo chmod +x entrypoint.sh
-7. docker build -t custom-fluentd:latest ./
+
+```
+
+### Modify td-agent.conf for environment
+```
+vi fluent.conf
+1. For splunk_out, update splunk-ip, splunk-hec, and index, source, sourcetype if needed
+2. For cloudwatch_out, update log_group_name, log_stream_name, and region
+```
+
+### Build the container
+```
+docker build -t custom-fluentd:latest ./
 ```
 
 ### Docker run command
