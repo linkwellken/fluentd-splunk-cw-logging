@@ -1,4 +1,6 @@
-This repo provides three different methods for implementing fluentd logging for your containers with some basic parsing and filtering for parsing out the log file.  The fluentd conf file is configured to forward the container logs to both Splunk and AWS Cloudwatch Logs where they can be leveraged for alerting or advanced analytics.  The fluent.conf file can be modified to send to only one destination, or other destinations as desired.  If choosing to forward to other destinations, ensure you update the Dockerfile with the required output plugin(s), and the fluent.conf file with the appropriate settings for the plugin.
+# fluentd logging to AWS Cloudwatch Logs and Splunk
+
+This repo provides three different methods for implementing fluentd logging for your chainlink, adapters, and Ethereum full node containers with some basic parsing and filtering for parsing out the log file.  The fluentd conf file is configured to forward the container logs to both Splunk and AWS Cloudwatch Logs where they can be leveraged for alerting or advanced analytics and dashboard creation.  The fluent.conf file can be modified to send to only one destination, or other destinations as desired.  If choosing to forward to other destinations, ensure you update the Dockerfile with the required output plugin(s), and the fluent.conf file with the appropriate settings for the plugin.
 
 ### Methods
 * Method 1 - Deploying fluentd as a service via the td-agent
