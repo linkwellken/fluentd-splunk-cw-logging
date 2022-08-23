@@ -1,5 +1,4 @@
 # fluentd-splunk-cw-logging
-This repo provides two different methods for implementing fluentd logging for your containers - installing fluentd as a service via the td-agent, and installing fluentd as a docker container.  The fluentd conf file is configured to forward the container logs to both Splunk and Cloudwatch Logs Group.
 
 ## Method 1 - Run fluentd as td-agent service
 1. Install td-agent and output plugins
