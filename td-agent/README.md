@@ -36,7 +36,7 @@ systemctl enable td-agent
 systemctl start td-agent
 ```
 
-### docker log driver flags for container monitoring
+### docker log driver flags for forwarding logs to fluentd
 https://docs.docker.com/config/containers/logging/fluentd/
 ```
 docker run -d \
