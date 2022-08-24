@@ -35,4 +35,6 @@ docker run -d \
 ```
 
 ### logging from the fluentd container itself with tagging
+```
 docker run -d -p 24224:24224 -u root -v /lw/fluentd/fluent.conf:/fluentd/etc/fluent.conf -e FLUENTD_CONF=fluent.conf --log-driver=fluentd --log-opt fluentd-address=localhost:24224 --log-opt tag=EGT-fluentd --restart unless-stopped --name fluentd  custom-fluentd:latest
+```
