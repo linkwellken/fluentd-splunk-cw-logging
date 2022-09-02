@@ -22,13 +22,45 @@ docker build -t custom-fluentd:latest ./
 
 ### Docker run command
 ```
-docker run -d -p 24224:24224 -v /opt/fluentd/fluentd-splunk-cw-logging/fluentd-docker-deployment-2/fluent.conf:/fluentd/etc/fluent.conf -e FLUENTD_CONF=fluent.conf --restart unless-stopped --name fluentd  custom-fluentd:latest
+docker run -d -p 24224:24224  -v /opt/fluentd/fluentd-splunk-cw-logging/fluentd-docker-deployment-2/fluent.conf:/fluentd/etc/fluent.conf -e FLUENTD_CONF=fluent.conf --restart unless-stopped --name fluentd  custom-fluentd:latest
+```
+
+### Docker run command to log fluentd container logs
+```
+docker run -d -p 24224:24224 --log-driver=fluentd --log-opt fluentd-address=localhost:24224 --log-opt tag=EGT-fluentd -v /opt/fluentd/fluentd-splunk-cw-logging/fluentd-docker-deployment-2/fluent.conf:/fluentd/etc/fluent.conf -e FLUENTD_CONF=fluent.conf --restart unless-stopped --name fluentd  custom-fluentd:latest
 ```
 
 ### docker log driver flags for sending logs to fluentd container
 https://docs.docker.com/config/containers/logging/fluentd/
+
+#### Chainlink
 ```
 docker run -d \
     --log-driver=fluentd \
     --log-opt fluentd-address=localhost:24224 \
+    --log-opt tag=EGT-Chainlink
+```
+
+#### Adapters
+```
+docker run -d \
+    --log-driver=fluentd \
+    --log-opt fluentd-address=localhost:24224 \
+    --log-opt tag=EGT-Adapters
+```
+
+#### Geth
+```
+docker run -d \
+    --log-driver=fluentd \
+    --log-opt fluentd-address=localhost:24224 \
+    --log-opt tag=geth_node
+```
+
+#### Teku
+```
+docker run -d \
+    --log-driver=fluentd \
+    --log-opt fluentd-address=localhost:24224 \
+    --log-opt tag=teku_node
 ```
