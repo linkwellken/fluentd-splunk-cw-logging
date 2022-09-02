@@ -3,7 +3,7 @@
 mkdir /opt/fluentd
 cd /opt/fluentd
 sudo yum install git
-git clone https://github.com/linkwellken/fluentd-splunk-cw-logging.git
+git clone https://github.com/linkwellken/fluentd-splunk-cw-logging
 cd fluentd-splunk-cw-logging/fluentd-docker-deployment-2
 sudo chmod +x entrypoint.sh
 ```
