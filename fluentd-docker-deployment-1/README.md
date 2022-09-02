@@ -34,9 +34,36 @@ docker run -d -p 24224:24224 -u root --log-driver=fluentd --log-opt fluentd-addr
 
 ### docker log driver flags for sending logs to fluentd container
 https://docs.docker.com/config/containers/logging/fluentd/
+
+#### Chainlink
 ```
 docker run -d \
     --log-driver=fluentd \
-    --log-opt fluentd-address=localhost:24224 --\
+    --log-opt fluentd-address=localhost:24224 \
+    --log-opt tag=EGT-Chainlink
+```
+
+#### Adapters
+```
+docker run -d \
+    --log-driver=fluentd \
+    --log-opt fluentd-address=localhost:24224 \
+    --log-opt tag=EGT-Adapters
+```
+
+#### Geth
+```
+docker run -d \
+    --log-driver=fluentd \
+    --log-opt fluentd-address=localhost:24224 \
+    --log-opt tag=geth_node
+```
+
+#### Teku
+```
+docker run -d \
+    --log-driver=fluentd \
+    --log-opt fluentd-address=localhost:24224 \
+    --log-opt tag=teku_node
 ```
 
