@@ -26,6 +26,12 @@ docker build -t custom-fluentd:latest ./
 docker run -d -p 24224:24224 --restart unless-stopped --name fluentd  custom-fluentd:latest
 ```
 
+### Docker run command to log fluentd container logs
+```
+docker run -d -p 24224:24224 -u root --log-driver=fluentd --log-opt fluentd-address=localhost:24224 --log-opt tag=EGT-fluentd --restart unless-stopped --name fluentd  custom-fluentd:latest
+```
+
+
 ### docker log driver flags for sending logs to fluentd container
 https://docs.docker.com/config/containers/logging/fluentd/
 ```
@@ -34,7 +40,3 @@ docker run -d \
     --log-opt fluentd-address=localhost:24224 --\
 ```
 
-### logging from the fluentd container itself with tagging
-```
-docker run -d -p 24224:24224 -u root -v /opt/fluentd/fluentd-splunk-cw-logging/fluentd-docker-deployment-1:/fluentd/etc/fluent.conf -e FLUENTD_CONF=fluent.conf --log-driver=fluentd --log-opt fluentd-address=localhost:24224 --log-opt tag=EGT-fluentd --restart unless-stopped --name fluentd  custom-fluentd:latest
-```
